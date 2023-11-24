@@ -1,0 +1,339 @@
+{
+	"info": {
+		"_postman_id": "e98d660a-5d24-433a-81d0-92f95e74b714",
+		"name": "RPG Platform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10156765"
+	},
+	"item": [
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}\\session\\all",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSession",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}\\session\\c22b702a-43a0-4ce2-9c90-9d2b2497da82",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"c22b702a-43a0-4ce2-9c90-9d2b2497da82"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Session",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sessionName\": \"Fabula Ultima\",\r\n    \"sessionDescription\": \"Test for Fabula Ultima RPG\",\r\n    \"sessionType\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}\\session\\new",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateSession",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}\\session\\72505b57-4e7c-44e5-ada8-be115d9d3dd6",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"72505b57-4e7c-44e5-ada8-be115d9d3dd6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Campaign",
+			"item": [
+				{
+					"name": "New Campaign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"pm.environment.set(\"campaignId\",responseData.campaignId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"campaignName\": \"test\",\r\n  \"campaignDescription\": \"Test Campaign\",\r\n  \"campaignType\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}/campaign/new?userId=bogus",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"new"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bogus",
+									"description": "owner of the campaign"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Campaigns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}/campaign/all",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Campaigns from UserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}/campaign/user?userId=bogus",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"user"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bogus"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}/campaign/{{campaignId}}",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"{{campaignId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Campaign",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"campaignName\": \"test 2\",\r\n  \"campaignDescription\": \"Test 2 Campaign\",\r\n  \"campaignType\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}/campaign/{{campaignId}}",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"{{campaignId}}"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bogus",
+									"description": "owner of the campaign",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new Players",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"players\":[\"gustav\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}/campaign/{{campaignId}}/newPlayer",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"{{campaignId}}",
+								"newPlayer"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bogus",
+									"description": "owner of the campaign",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Player",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"players\":[\"gustav\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}/campaign/{{campaignId}}/remove/bogus",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"campaign",
+								"{{campaignId}}",
+								"remove",
+								"bogus"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "bogus",
+									"description": "owner of the campaign",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Healtcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{basic_url}}",
+					"host": [
+						"{{basic_url}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "basic_url",
+			"value": "localhost:3000"
+		},
+		{
+			"key": "campaignId",
+			"value": " "
+		}
+	]
+}
