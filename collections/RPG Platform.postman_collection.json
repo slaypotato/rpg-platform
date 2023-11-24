@@ -7,92 +7,6 @@
 	},
 	"item": [
 		{
-			"name": "Session",
-			"item": [
-				{
-					"name": "GetAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{basic_url}}\\session\\all",
-							"host": [
-								"{{basic_url}}"
-							],
-							"path": [
-								"session",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetSession",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{basic_url}}\\session\\c22b702a-43a0-4ce2-9c90-9d2b2497da82",
-							"host": [
-								"{{basic_url}}"
-							],
-							"path": [
-								"session",
-								"c22b702a-43a0-4ce2-9c90-9d2b2497da82"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Create New Session",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"sessionName\": \"Fabula Ultima\",\r\n    \"sessionDescription\": \"Test for Fabula Ultima RPG\",\r\n    \"sessionType\": 1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{basic_url}}\\session\\new",
-							"host": [
-								"{{basic_url}}"
-							],
-							"path": [
-								"session",
-								"new"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UpdateSession",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"url": {
-							"raw": "{{basic_url}}\\session\\72505b57-4e7c-44e5-ada8-be115d9d3dd6",
-							"host": [
-								"{{basic_url}}"
-							],
-							"path": [
-								"session",
-								"72505b57-4e7c-44e5-ada8-be115d9d3dd6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Campaign",
 			"item": [
 				{
@@ -312,6 +226,133 @@
 			]
 		},
 		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Create New Session",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let responseData = pm.response.json();\r",
+									"pm.environment.set(\"sessionId\",responseData.sessionId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"campaignId\":\"{{campaignId}}\",\r\n    \"sessionName\": \"Fabula Ultima\",\r\n    \"sessionDescription\": \"Test for Fabula Ultima RPG\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{basic_url}}\\session\\new",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}\\session\\all",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSessionByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}\\session\\{{sessionId}}",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"{{sessionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSessionByCampaignID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}/session?campaignid={{campaignId}}",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session"
+							],
+							"query": [
+								{
+									"key": "campaignid",
+									"value": "{{campaignId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetLastSessionByCampaignID Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{basic_url}}/session/last?campaignid={{campaignId}}",
+							"host": [
+								"{{basic_url}}"
+							],
+							"path": [
+								"session",
+								"last"
+							],
+							"query": [
+								{
+									"key": "campaignid",
+									"value": "{{campaignId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Healtcheck",
 			"request": {
 				"method": "GET",
@@ -333,6 +374,10 @@
 		},
 		{
 			"key": "campaignId",
+			"value": " "
+		},
+		{
+			"key": "sessioID",
 			"value": " "
 		}
 	]
