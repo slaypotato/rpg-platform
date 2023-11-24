@@ -1,8 +1,9 @@
 export default interface SessionCreatedDto {
   sessionId: string;
+  campaignId: string;
   sessionName: string;
-  sessionToken: string;
   sessionDescription: string;
-  sessionType: number;
   previousSession: string;
+  sessionNumber: number;
+  sessionEvents: string[];
 }

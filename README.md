@@ -7,6 +7,10 @@ This project was created using [Nest](https://github.com/nestjs/nest) framework.
 This preject uses a .env file with the following variables:
 
 * PORT= port where the service will be available.
+* MONGO_USER= MongoDB user
+* MONGO_PASSWORD= MongoDB Password
+* MONGO_DB= MongoDB Database
+* MONGO_HOST= MongoDB Host
 
 ## Installation
 

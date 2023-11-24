@@ -7,10 +7,10 @@ import { CampaignModule } from './campaign/campaign.module';
 
 @Module({
   imports: [
-    SessionModule,
     ConfigModule.forRoot(),
     DatabaseModule,
     CampaignModule,
+    SessionModule,
   ],
   controllers: [AppController],
   providers: [],

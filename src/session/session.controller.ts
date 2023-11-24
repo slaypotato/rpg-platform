@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Body, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body, Query } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SessionService } from './session.service';
 import SessionDto from './dtos/session.dto';
@@ -8,43 +8,57 @@ import SessionDto from './dtos/session.dto';
 export class SessionController {
   constructor(private readonly service: SessionService) {}
 
+  @Post('new')
   @ApiResponse({
     status: 201,
     description: 'Create a new Session',
   })
-  @Post('new')
   async createNewSession(@Body() session: SessionDto): Promise<SessionDto> {
-    console.log(`Creating new Session: ${session.sessionId}`);
+    console.log(`Creating new Session`);
     return await this.service.createNewSession(session);
   }
 
+  @Get('all')
   @ApiResponse({
     status: 200,
-    description: 'Get All Session Information',
+    description: 'Get All Sessions Information',
   })
-  @Get('all')
   async getSession(): Promise<SessionDto[]> {
     console.log(`Recovering all Session`);
     return await this.service.getAllSession();
   }
 
+  @Get('last')
   @ApiResponse({
     status: 200,
     description: 'Current Session Information',
   })
+  async getLastSesionByCampaignId(
+    @Query('campaignid') id: string,
+  ): Promise<SessionDto> {
+    console.log(`Getting Sessions from Campaign ${id}`);
+    return await this.service.getLastSessionOfCampaign(id);
+  }
+
   @Get(':id')
+  @ApiResponse({
+    status: 200,
+    description: 'Current Session Information',
+  })
   async getSessionById(@Param('id') id: string): Promise<SessionDto> {
-    console.log(`Updating Session ${id}`);
+    console.log(`Getting info from Session ${id}`);
     return await this.service.getSessionById(id);
   }
 
+  @Get('/')
   @ApiResponse({
     status: 200,
-    description: 'Updating Session Information',
+    description: 'Current Session Information',
   })
-  @Patch(':id')
-  async updateSessionById(@Param('id') id: string): Promise<SessionDto> {
-    console.log(`Updating Session ${id}`);
-    return await this.service.updateSessionToken(id);
+  async getSessionByCampaignId(
+    @Query('campaignid') id: string,
+  ): Promise<SessionDto[]> {
+    console.log(`Getting Sessions from Campaign ${id}`);
+    return await this.service.getSessionsByCampaign(id);
   }
 }

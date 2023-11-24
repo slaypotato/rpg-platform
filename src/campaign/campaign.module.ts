@@ -8,5 +8,6 @@ import { campaignProviders } from './campaign.providers';
   imports: [DatabaseModule],
   providers: [...campaignProviders, CampaignService],
   controllers: [CampaignController],
+  exports: [CampaignService],
 })
 export class CampaignModule {}

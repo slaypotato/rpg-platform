@@ -5,17 +5,20 @@ export default class SessionDto {
   sessionId: string;
 
   @ApiProperty()
-  sessionName: string;
+  campaignId: string;
 
   @ApiProperty()
-  sessionToken: string;
+  sessionName: string;
 
   @ApiProperty()
   sessionDescription: string;
 
   @ApiProperty()
-  sessionType: number;
+  previousSession: string;
 
   @ApiProperty()
-  previousSession: string;
+  sessionNumber: number;
+
+  @ApiProperty({ isArray: true })
+  sessionEvents: string[];
 }
