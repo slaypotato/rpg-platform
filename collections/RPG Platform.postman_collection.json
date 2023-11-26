@@ -229,6 +229,42 @@
 			"name": "Session",
 			"item": [
 				{
+					"name": "Commands",
+					"item": [
+						{
+							"name": "DiceRoll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"diceType\":\"d6\"\r\n    },\r\n    {\r\n        \"diceType\":\"d10\",\r\n        \"diceName\":\"Thiago\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{basic_url}}\\session\\command\\diceRoll",
+									"host": [
+										"{{basic_url}}"
+									],
+									"path": [
+										"session",
+										"command",
+										"diceRoll"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "Create New Session",
 					"event": [
 						{

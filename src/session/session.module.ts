@@ -4,11 +4,13 @@ import { SessionService } from './session.service';
 import { DatabaseModule } from 'src/database/database.module';
 import { sessionProviders } from './session.providers';
 import { CampaignModule } from 'src/campaign/campaign.module';
+import { SessionCommandsController } from './sessions-commands.controller';
+import { SessionCommandsService } from './sessions-commands.service';
 
 @Module({
   imports: [DatabaseModule, CampaignModule],
-  controllers: [SessionController],
-  providers: [...sessionProviders, SessionService],
+  controllers: [SessionController, SessionCommandsController],
+  providers: [...sessionProviders, SessionService, SessionCommandsService],
 })
 export class SessionModule {}
 

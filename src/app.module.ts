@@ -13,6 +13,5 @@ import { CampaignModule } from './campaign/campaign.module';
     SessionModule,
   ],
   controllers: [AppController],
-  providers: [],
 })
 export class AppModule {}
